@@ -1,1 +1,1 @@
-<img src="pics/chromium-theme.jpg">
+<img src="/pics/chromium-theme.jpg">
