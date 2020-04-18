@@ -1,0 +1,33 @@
+{
+    "version": "1",
+    "manifest_version": 2,
+    "name": "graphite theme",
+    "theme": {
+	"colors" : {
+	    "frame" : [0, 0, 0],
+	    "frame_inactive" : [0, 0, 0],
+	    "frame_incognito" : [0, 0, 0],
+	    "frame_incognito_inactive" : [0, 0, 0],
+	    "ntp_background": [0, 0, 0],
+	    "ntp_text": [148, 148, 148],
+	    "background_tab" : [0, 0, 0],
+	    "background_tab_inactive" : [0, 0, 0],
+	    "background_tab_incognito" : [0, 0, 0],
+	    "background_tab_incognito_inactive" : [0, 0, 0],
+	    "bookmark_text" : [148, 148, 148],
+	    "button_background" : [34, 34, 34],
+	    "tab_background_text" : [148, 148, 148],
+	    "tab_background_text_inactive" : [148, 148, 148],
+	    "tab_background_text_incognito" : [148, 148, 148],
+	    "tab_background_text_incognito_inactive" : [148, 148, 148],
+	    "tab_text" : [148, 148, 148],
+	    "toolbar" : [0, 0, 0],
+	    "toolbar_button_icon" : [128, 128, 128],
+	    "omnibox_text" : [128, 128, 128],
+	    "omnibox_background" : [0, 0, 0]
+	},
+	"properties" : {
+	    "ntp_background_alignment" : "bottom"
+	}
+    }
+}
