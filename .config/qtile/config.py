@@ -143,7 +143,7 @@ groups.append(
 )
 
 common_theme = {
-    'border_focus': '080854',
+    'border_focus': '1f232a',
     'border_normal': '000000',
     'border_width': 1
 }
