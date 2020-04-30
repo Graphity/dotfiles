@@ -110,7 +110,7 @@ group_config = {
         'label': 'discord'
     },
     'c': {
-        'spawn': 'spotify',
+        'spawn': 'sudo spotify',
         'layout': 'bsp',
         'label': 'media'
     },
@@ -301,6 +301,3 @@ def sync_packages():
 def autostart():
     set_wallpaper()
     sync_packages()
-
-
-
