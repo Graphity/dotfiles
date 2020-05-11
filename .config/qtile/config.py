@@ -110,7 +110,7 @@ group_config = {
         'label': 'discord'
     },
     'c': {
-        'spawn': 'sudo spotify',
+        'spawn': 'spotify',
         'layout': 'bsp',
         'label': 'media'
     },
