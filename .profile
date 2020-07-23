@@ -7,7 +7,9 @@ else
   export EDITOR="emacs -nw"
 fi
 
-export TERMINAL="kitty"
+export WALLS="$HOME/pics/walls"
+export TODO="$HOME/todo.org"
+export TERMINAL="st"
 export FILE="ranger"
 export ZDOTDIR="$HOME/.config/zsh"
 export LANG="en_US.UTF-8"
@@ -25,4 +27,3 @@ export LS_COLORS="no=00:fi=00:di=34:ow=34;40:ln=35:pi=30;44:so=35;44:do=35;44:bd
 
 # Start graphical server on tty1 if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
-
