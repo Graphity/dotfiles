@@ -1,13 +1,15 @@
 #+TITLE: Graphite: emacs
 #+STARTIP: overview
 
-* main tweaks
+* General
 #+BEGIN_SRC emacs-lisp
   (ido-mode 1)
   (menu-bar-mode 0)
   (tool-bar-mode 0)
   (scroll-bar-mode 0)
   (fset 'yes-or-no-p 'y-or-n-p)
+  (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-z"))
   (setq inhibit-startup-screen t)
   (setq backup-directory-alist '(("." . "~/.emacs.d/.backup")))
 #+END_SRC
@@ -16,7 +18,7 @@
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
    (load-theme 'graphite t)
-   (set-default-font "Hack-10")
+   (set-default-font "Hack-12")
 
    (defun on-frame-open (frame)
      (if (not (display-graphic-p frame))
@@ -30,47 +32,8 @@
 
    (add-hook 'window-setup-hook 'on-after-init)
  #+END_SRC
-
-* usefull packages
-** avy
- #+BEGIN_SRC emacs-lisp
-   (use-package avy
-     :ensure t
-     :bind ("C-:" . avy-goto-char))
- #+END_SRC
-
-** smex
- #+BEGIN_SRC emacs-lisp
-   (use-package smex
-     :ensure t
-     :bind (("M-x" . smex)
-            ("M-X" . smex-major-mode-commands)
-            ("C-c C-c M-x" . execute-extended-command)))
- #+END_SRC
-
-** iedit
- #+BEGIN_SRC emacs-lisp
-   (use-package iedit
-     :ensure t)
- #+END_SRC
-
-** ace-window
- #+BEGIN_SRC emacs-lisp
-   (use-package ace-window
-     :ensure t
-     :init
-     (global-set-key [remap other-window] 'ace-window))
- #+END_SRC
-
-** expand-region 
- #+BEGIN_SRC emacs-lisp
-   (use-package expand-region
-     :ensure t
-     :config
-     (global-set-key (kbd "C-=") 'er/expand-region))
- #+END_SRC
    
-* langs
+* Languages
 ** Python
  #+BEGIN_SRC emacs-lisp
    (setq py-python-command "python3")
@@ -145,10 +108,65 @@
 	     ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
      (setq web-mode-enable-auto-closing t))
  #+END_SRC
-* org-mode
+
+* Advanced
+** After save hook
+ #+BEGIN_SRC emacs-lisp
+   (defvar *filename-cmd*
+     '(("/home/graphity/.Xresources" . "xrdb ~/.Xresources")
+       ("/home/graphity/todo.org" . "kill -43 $(pidof dwmblocks)")))
+
+   (defun my/cmd-after-saved-file ()
+     (let* ((match (assoc (buffer-file-name) *filename-cmd*)))
+       (when match
+	 (shell-command (cdr match)))))
+
+   (add-hook 'after-save-hook 'my/cmd-after-saved-file)
+
+ #+END_SRC
+** avy
+ #+BEGIN_SRC emacs-lisp
+   (use-package avy
+     :ensure t
+     :bind ("C-:" . avy-goto-char))
+ #+END_SRC
+
+** smex
+ #+BEGIN_SRC emacs-lisp
+   (use-package smex
+     :ensure t
+     :bind (("M-x" . smex)
+            ("M-X" . smex-major-mode-commands)
+            ("C-c C-c M-x" . execute-extended-command)))
+ #+END_SRC
+
+** iedit
+ #+BEGIN_SRC emacs-lisp
+   (use-package iedit
+     :ensure t)
+ #+END_SRC
+
+** ace-window
+ #+BEGIN_SRC emacs-lisp
+   (use-package ace-window
+     :ensure t
+     :init
+     (global-set-key [remap other-window] 'ace-window))
+ #+END_SRC
+
+** expand-region 
+ #+BEGIN_SRC emacs-lisp
+   (use-package expand-region
+     :ensure t
+     :config
+     (global-set-key (kbd "C-=") 'er/expand-region))
+ #+END_SRC
+* Org-mode
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
+    :custom
+    (org-bullets-bullet-list '("◉" "○" "●" "◆"))
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
