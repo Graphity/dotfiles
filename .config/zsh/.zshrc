@@ -45,6 +45,7 @@ copy-region() {
   if ((REGION_ACTIVE)) then
     zle copy-region-as-kill
     print -rn $CUTBUFFER | xclip -selection c
+    print -rn $CUTBUFFER | xclip -selection p
     ((REGION_ACTIVE = 0))
   fi
 }
