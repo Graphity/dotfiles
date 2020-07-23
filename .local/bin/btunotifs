@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import requests
+import json
+import gi
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify
+from bs4 import BeautifulSoup
+
+with open('/home/graphity/.local/bin/.cfg/btu.json', 'r') as f:
+    user = json.load(f)
+
+url = 'https://classroom.btu.edu.ge/ge/login/trylogin'
+r = requests.post(url, data={'username': user['name'], 'password': user['pass']})
+soup = BeautifulSoup(r.content, 'html.parser')
+unread = soup.find('a', {'title': 'შეტყობინებები'}).text.strip()
+
+
+def send_notif(n):
+    Notify.init('BTU')
+    notif = Notify.Notification.new('Classroom', f'{n} unread messages', '')
+    notif.show()
+
+
+if __name__ == '__main__':
+    send_notif(unread)
+    print(unread)

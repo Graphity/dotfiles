@@ -1,0 +1,10 @@
+#!/bin/bash
+
+A=$(grep -c \* $TODO)
+
+if [ $A -eq 0 ]; then
+    echo 0
+else
+    S=$(grep -c "*\*" $TODO)
+    echo "$(expr $A - $S)($S)"
+fi

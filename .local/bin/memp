@@ -1,0 +1,4 @@
+#!/bin/bash
+
+MEM=$(free --mebi | grep Mem)
+echo $(expr $(echo $MEM | awk '{ print $3 }') \* 100 / $(echo $MEM | awk '{ print $2 }'))%

@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import requests
+import sys
+import os
+
+url = 'http://terminal.sexy/schemes/'
+schemes = requests.get(url).json()
+
+dir = sys.argv[1] if sys.argv[1:] else 'common-treasure'
+if not os.path.exists(dir):
+    os.mkdir(dir)
+
+if not str(dir).endswith('/'):
+    dir = f'{dir}/'
+
+try:
+    for i, scheme in enumerate(schemes):
+        scheme = requests.get(f'{url}{scheme}.json?v=0.4.0').json()
+        name = scheme['name'].lower().translate(str.maketrans(' ', '-', '():.'))
+        fr, bc = scheme['foreground'], scheme['background']
+    
+        with open(f'{dir}{name}', 'w') as f:
+            f.write(f'*.foreground:\t{fr}\n*.background:\t{bc}\n*.cursorColor:\t{fr}')
+            for j, c in enumerate(scheme['color']):
+                f.write(f'\n*.color{j}:\t{c}')
+
+        print(f'\r* [{i+1}/{len(schemes)}] Last save: {dir}{name+" "*20}', end='\r')
+except KeyboardInterrupt:
+    pass
+finally:
+    print()
