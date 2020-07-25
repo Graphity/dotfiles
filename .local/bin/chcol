@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SCHEMES="$HOME/.Xresources.d/schemes"
+SCHEME=$(ls $SCHEMES | dmenu -hp "graphite")
+
+if [ -n "$SCHEME" ]; then
+    ln -sf "$SCHEMES/$SCHEME" ~/.Xresources.d/current
+    xrdb ~/.Xresources
+fi
