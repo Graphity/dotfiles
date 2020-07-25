@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ACT=$(echo -e "shutdown\nreboot\nsuspend\nquit" | dmenu -p "Choose action:")
+
+case $ACT in
+    "shutdown") shutdown now ;;
+    "reboot") reboot ;;
+    "suspend") systemctl suspend ;;
+    "quit") pkill dwm ;;
+esac
