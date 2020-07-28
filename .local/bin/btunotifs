@@ -18,7 +18,7 @@ unread = soup.find('a', {'title': 'შეტყობინებები'}).te
 
 def send_notif(n):
     Notify.init('BTU')
-    notif = Notify.Notification.new('Classroom', f'{n} unread messages', '')
+    notif = Notify.Notification.new('BTU Classroom', f'{n} unread messages', '')
     notif.show()
 
 
