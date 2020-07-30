@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+from random import choice
+from string import digits, ascii_letters, punctuation
+
+chars = [digits, ascii_letters, punctuation]
+included = ['letters', 'symbols', 'digits']
+
+def main():
+    parser = argparse.ArgumentParser(description='Generate random password')
+    parser.add_argument('-L', '--length', metavar='<int>', default=16, type=int,
+                        help='set password length. (default is 16)')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='print some info and password itself')
+    parser.add_argument('-l', '--letters', action='store_true',
+                        help='exclude letters')
+    parser.add_argument('-s', '--symbols', action='store_true',
+                        help='exclude symbols')
+    parser.add_argument('-d', '--digits', action='store_true',
+                        help='exclude digits')
+
+    args = parser.parse_args()
+    args.length = abs(args.length)
+
+    if args.letters:
+        chars.remove(ascii_letters)
+        included.remove('letters')
+    if args.symbols:
+        chars.remove(punctuation)
+        included.remove('symbols')
+    if args.digits:
+        chars.remove(digits)
+        included.remove('digits')
+
+    if not chars:
+        return 'Password must contain at least one of the following: letters, digits, symbols'
+    elif args.length > 256:
+        return 'Max password length is 256'
+
+    psw = ''.join(choice(''.join(chars)) for _ in range(args.length))
+    p = subprocess.Popen(['xclip', '-selection', 'c'],
+                         stdin=subprocess.PIPE, close_fds=True)
+    p.communicate(input=psw.encode('utf-8'))
+
+    if args.verbose:
+        print(f'Generated password: {psw}\nCharacter Count: {args.length}\nIncludes:', *included)
+    return 'password copied to clipboard...'
+
+
+if __name__ == '__main__':
+    print(main())
