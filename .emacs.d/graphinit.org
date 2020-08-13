@@ -18,7 +18,7 @@
  #+BEGIN_SRC emacs-lisp
    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
    (load-theme 'graphite t)
-   (set-default-font "Hack-12")
+   (set-frame-font "Hack-12")
 
    (defun on-frame-open (frame)
      (if (not (display-graphic-p frame))
