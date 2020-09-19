@@ -19,4 +19,7 @@ info = f'{msg_count} unread messages and {notif_count} notifications'
 
 if __name__ == '__main__':
     notify.send_notif('BTU', 'BTU Classroom', info)
-    print(info)
+    if msg_count == 0 and notif_count == 0:
+        print(0)
+    else:
+        print(f'{msg_count}({notif_count})')
