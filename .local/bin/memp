@@ -1,4 +1,3 @@
 #!/bin/bash
 
-MEM=$(free --mebi | grep Mem)
-echo $(expr $(echo $MEM | awk '{ print $3 }') \* 100 / $(echo $MEM | awk '{ print $2 }'))%
+echo "$(free -t | awk 'FNR == 2 {print $3/$2*100}' | cut -d '.' -f1)%"
