@@ -7,4 +7,4 @@ alias diff="diff --color=auto"
 
 alias icat="kitty +kitten icat"
 alias scrot="scrot '%H%M%S_scrot.png' -e 'mv \$f ~/pics/screens/'"
-alias dotfiles="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
