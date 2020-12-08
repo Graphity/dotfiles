@@ -1,10 +1,11 @@
 export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # Default stuff
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vi"
-else
   export EDITOR="emacs -nw"
+else
+  export EDITOR="emacs"
 fi
 
 export WALLS="$HOME/pics/walls"
