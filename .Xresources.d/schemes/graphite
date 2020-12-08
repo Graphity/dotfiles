@@ -1,4 +1,4 @@
-*.foreground:	#1f232a
+*.foreground:	#707880
 *.background:	#000000
 *.cursorColor:	#2e3442
 *.color0:	#000000
@@ -9,7 +9,7 @@
 *.color5:	#205ab6
 *.color6:	#1f388a
 *.color7:	#a5d0d1
-*.color8:	#222222
+*.color8:	#282a2e
 *.color9:	#3d1e1a
 *.color10:	#3ea290
 *.color11:	#095b85
