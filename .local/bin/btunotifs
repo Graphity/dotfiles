@@ -5,38 +5,26 @@ import requests
 import notify
 from bs4 import BeautifulSoup
 
-urls = {
-    'old': 'https://classroom.btu.edu.ge/ge/login/trylogin',
-    'msg': 'https://newclassroom.btu.ge/student/message/count',
-    'notif': 'https://newclassroom.btu.ge/student/notification/getUnreadNotificationCount'
-}
+url = 'https://classroom.btu.edu.ge/ge/login/trylogin'
 
 with open('/home/graphity/.local/bin/.cfg/btu.json', 'r') as f:
     data = json.load(f)
 
 
-def check_old_inbox():
-    r = requests.post(urls['old'], data={'username': data['user'], 'password': data['pass']})
+def check_inbox():
+    r = requests.post(url, data={'username': data['user'], 'password': data['pass']})
     soup = BeautifulSoup(r.content, 'html.parser')
     msgs = soup.find('a', {'title': 'შეტყობინებები'}).text.strip()
     return f'{msgs} unread messages'
 
 
-def check_new_inbox():
-    check = lambda url: requests.get(url, headers={'Authorization': data['cookie']}).json()['inbox']
-    return f'{check(urls["msg"])} unread messages and {check(urls["notif"])} notifications'
-
-
 if __name__ == '__main__':
     try:
-        info = check_new_inbox()
-        msgs, notifs = info.split()[0], info.split()[4]
-        if msgs  == 0 and notifs == 0:
-            print(0)
-        else:
-            print(f'{msgs}({notifs})')
+        info = check_inbox()
+        indicator = info.split()[0]
     except:
-        info = check_old_inbox()
-        print(info.split()[0])
+        info = 'Error occurred'
+        indicator = 'X'
     finally:
         notify.send_notif('BTU', 'BTU Classroom', info)
+        print(indicator)
