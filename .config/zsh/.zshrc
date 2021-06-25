@@ -1,7 +1,6 @@
 # Graphite: .zshrc
 
 autoload -U colors && colors
-source /usr/share/zsh/themes/graphite.zsh-theme
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -82,3 +81,5 @@ bindkey $terminfo[kRIT] shift-right
 
 [ -f "$HOME/.config/zsh/.alias" ] && source "$HOME/.config/zsh/.alias"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(starship init zsh)"
