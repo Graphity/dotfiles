@@ -1,0 +1,16 @@
+add_newline = false
+
+format = "$directory$git_branch$git_status$character"
+
+[directory]
+style = "bold cyan"
+
+[git_branch]
+format = "[$symbol$branch](bold purple dimmed) "
+
+[character]
+success_symbol = "[\\$](bold cyan)"
+error_symbol = "[\\$](bold red)"
+
+[line_break]
+disabled = true
