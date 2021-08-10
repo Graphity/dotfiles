@@ -1,9 +1,11 @@
 add_newline = false
 
-format = "$directory$git_branch$git_status$character"
+format = "$python$directory$git_branch$git_status$character"
 
 [directory]
 style = "bold cyan"
+read_only = " [R]"
+read_only_style = "purple"
 
 [git_branch]
 format = "[$symbol$branch](bold purple dimmed) "
@@ -11,6 +13,9 @@ format = "[$symbol$branch](bold purple dimmed) "
 [character]
 success_symbol = "[\\$](bold cyan)"
 error_symbol = "[\\$](bold red)"
+
+[python]
+format = "[(\\($virtualenv\\) )]($style)"
 
 [line_break]
 disabled = true
