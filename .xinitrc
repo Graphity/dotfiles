@@ -1,3 +1,4 @@
+xcompmgr -c &
 ~/.fehbg &
 xrdb ~/.Xresources &
 setxkbmap -model pc104 -layout us,ge -variant , -option grp:caps_toggle &
