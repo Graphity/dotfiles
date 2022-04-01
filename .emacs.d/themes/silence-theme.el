@@ -20,12 +20,12 @@
       (green   "#09f7a0")
       (yellow  "#f9e995")
       (blue    "#218cff")
-	  (cyan    "#6fc3df")
-	  (orange  "#fab795")
-	  (purple  "#5d50a8")
-	  (teal    "#46cdcf")
-	  (violet  "#6c6f93")
-	  (blue2   "#729fdd"))
+      (cyan    "#6fc3df")
+      (orange  "#fab795")
+      (purple  "#5d50a8")
+      (teal    "#46cdcf")
+      (violet  "#6c6f93")
+      (blue2   "#729fdd"))
 
   (custom-theme-set-faces
    'silence
