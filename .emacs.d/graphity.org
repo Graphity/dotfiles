@@ -1,0 +1,345 @@
+#+TITLE: Graphity's Emacs Configuration
+#+STARTUP: overview
+
+* Interface
+** Remove junk
+   #+begin_src emacs-lisp
+     (menu-bar-mode 0)
+     (tool-bar-mode 0)
+     (scroll-bar-mode 0)
+     (setq inhibit-startup-screen t)
+   #+end_src
+** theme and font
+   #+begin_src emacs-lisp
+	 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+	 (load-theme 'silence t)
+	 (set-frame-font "Hack-12")
+
+	 (defun on-frame-open (frame)
+	   (if (not (display-graphic-p frame))
+		   (set-face-background 'default "unspecified-bg" frame)))
+	 (on-frame-open (selected-frame))
+	 (add-hook 'after-make-frame-functions 'on-frame-open)
+
+	 (defun on-after-init ()
+	   (unless (display-graphic-p (selected-frame))
+		 (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+	 (add-hook 'window-setup-hook 'on-after-init)
+   #+end_src
+** transparency
+   #+begin_src emacs-lisp
+	 (set-frame-parameter (selected-frame) 'alpha 65)
+	 (add-to-list 'default-frame-alist '(alpha . 65))
+
+	 (defun toggle-transparency ()
+	   (interactive)
+	   (let ((alpha (frame-parameter nil 'alpha)))
+		 (set-frame-parameter
+		  nil 'alpha
+		  (if (eql (cond ((numberp alpha) alpha)
+						 ((numberp (cdr alpha)) (cdr alpha))
+						 ;; Also handle undocumented (<active> <inactive>) form.
+						 ((numberp (cadr alpha)) (cadr alpha)))
+				   100)
+			  65 100))))
+	 (global-set-key (kbd "C-c t") 'toggle-transparency)
+
+	 ;; Set transparency of emacs
+	 (defun transparency (value)
+	   "Sets the transparency of the frame window. 0=transparent/100=opaque"
+	   (interactive "nTransparency Value 0 - 100 opaque:")
+	   (set-frame-parameter (selected-frame) 'alpha value))
+   #+end_src
+** modeline
+   #+begin_src emacs-lisp
+	 (use-package doom-modeline
+	   :ensure t
+	   :init
+	   (doom-modeline-mode 1)
+	   :custom
+	   (doom-modeline-height 32)
+	   (column-number-mode t))
+   #+end_src
+** all-the-icons
+   #+begin_src emacs-lisp
+	 (use-package all-the-icons
+	   :ensure t
+	   :if (display-graphic-p))
+
+	 (use-package all-the-icons-ivy-rich
+	   :ensure t
+	   :init (all-the-icons-ivy-rich-mode 1))
+
+	 (use-package all-the-icons-dired
+	   :ensure t
+	   :hook (dired-mode . all-the-icons-dired-mode)
+	   :init (setq all-the-icons-dired-monochrome nil))
+   #+end_src
+* General
+** Ivy
+   #+begin_src emacs-lisp
+	 (use-package ivy
+	   :ensure t
+	   :config
+	   (setq ivy-use-virtual-buffers t)
+	   (setq ivy-count-format "(%d/%d) ")
+	   (setq ivy-extra-directories nil)
+
+	   (add-to-list 'ivy-format-functions-alist '(counsel-describe-face . counsel--faces-format-functin))
+	   :bind (("M-x" . counsel-M-x)
+			  ("C-x C-f" . counsel-find-file)
+			  ("C-x b" . ivy-switch-buffer)
+			  ("C-x d" . counsel-dired)
+			  ("C-c c" . counsel-compile)
+			  ("C-c r" . counsel-recentf)
+			  ("<f1> f" . counsel-describe-function)
+			  ("<f1> v" . counsel-describe-variable)
+			  ("<f1> l" . counsel-find-library)
+			  ("<f2> i" . counsel-info-lookup-symbol)
+			  ("<f2> u" . counsel-unicode-char)
+			  ("<f2> j" . counsel-set-variable))
+	   :init (ivy-mode))
+
+	 (use-package ivy-rich
+	   :ensure t
+	   :init (ivy-rich-mode 1))
+   #+end_src
+** Backups
+   #+begin_src emacs-lisp
+	 (setq backup-directory-alist '(("." . "~/.emacs.d/.backups/"))
+		   backup-by-copying t
+		   delete-old-versions t
+		   kept-new-versions 4
+		   kept-old-versions 0
+		   version-control t)
+
+	 (add-to-list 'backup-directory-alist
+				  (cons tramp-file-name-regexp nil))
+   #+end_src
+** Change "yes/no" to "y/n"
+   #+begin_src emacs-lisp
+     (fset 'yes-or-no-p 'y-or-n-p)
+   #+end_src
+** Change tab size
+   #+begin_src emacs-lisp
+	 (setq-default tab-width 4)
+	 (setq tab-width 4)
+   #+end_src
+** Unset annoying keybindings
+   #+begin_src emacs-lisp
+     (global-unset-key (kbd "C-z"))
+     (global-unset-key (kbd "C-x C-z"))
+   #+end_src
+** ace-window
+   #+begin_src emacs-lisp
+	 (use-package ace-window
+	   :ensure t
+	   :bind ([remap other-window] . 'ace-window))
+   #+end_src
+** which-key
+   #+begin_src emacs-lisp
+     (use-package which-key
+       :ensure t
+       :init (which-key-mode 1))
+   #+end_src
+** pdf-tools
+   #+begin_src emacs-lisp
+	 (use-package pdf-tools
+	   :ensure t
+	   :config
+	   (pdf-tools-install))
+   #+end_src
+** elcord
+   #+begin_src emacs-lisp
+	 (use-package elcord
+	   :ensure t
+	   :init (elcord-mode t)
+	   :custom
+	   (elcord-use-major-mode-as-main-icon t)
+	   (elcord-show-small-icon nil))
+   #+end_src
+
+* Coding
+** Languages
+*** C
+	#+begin_src emacs-lisp
+	  (setq c-basic-offset 4)
+	#+end_src
+*** Go
+    #+begin_src emacs-lisp
+	   (use-package go-mode
+		:ensure t
+		:mode "\\.go\\'")
+    #+end_src
+*** TypeScript
+    #+begin_src emacs-lisp
+	  (use-package typescript-mode
+		:ensure t
+		:mode "\\.ts\\'")
+    #+end_src
+*** Json
+	#+begin_src emacs-lisp
+	  (use-package json-mode
+		:ensure t
+		:mode "\\.json\\'")
+	#+end_src
+** LSP
+   #+begin_src emacs-lisp
+	 (use-package lsp-mode
+	   :ensure t
+	   :init
+	   (setq lsp-keymap-prefix "C-c l"
+			 lsp-enable-symbol-highlighting nil
+			 lsp-modeline-diagnostics-enable t
+			 gc-cons-threshold 100000000
+			 read-process-output-max (* 1024 1024)
+			 lsp-idle-delay 0.500
+			 lsp-log-io nil
+			 company-minimum-prefix-length 1
+			 lsp-enable-links nil
+			 lsp-signature-render-documentation nil
+			 lsp-headerline-breadcrumb-enable nil
+			 lsp-ui-doc-enable nil
+			 lsp-completion-enable-additional-text-edit nil
+			 web-mode-enable-current-element-highlight t)
+	   :hook ((python-mode . lsp-deferred)
+			  (go-mode . lsp-deferred)
+			  (lsp-mode . lsp-enable-which-key-integration))
+	   :commands (lsp lsp-deferred))
+   #+end_src
+** company
+   #+begin_src emacs-lisp
+	 (use-package company
+	   :ensure t
+	   :init
+	   (add-hook 'after-init-hook 'global-company-mode))
+   #+end_src
+** flycheck
+   #+begin_src emacs-lisp
+     (use-package flycheck
+       :ensure t
+       :init
+       (global-flycheck-mode t))
+   #+end_src
+** yasnippet
+   #+begin_src emacs-lisp
+	 (use-package yasnippet
+	   :ensure t
+	   :init (yas-global-mode))
+
+	 (use-package yasnippet-snippets
+	   :ensure t)
+   #+end_src
+** projectile
+   #+begin_src emacs-lisp
+	 (use-package projectile
+	   :ensure t
+	   :config
+	   (projectile-global-mode)
+	   (setq projectile-completion-system 'ivy)
+	   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+   #+end_src
+** web-mode
+   #+begin_src emacs-lisp
+	 (use-package web-mode
+	   :ensure t
+	   :config
+	   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	   (setq web-mode-engines-alist
+			 '(("django" . "\\.html\\'")))
+	   (setq web-mode-ac-sources-alist
+			 '(("css" . (ac-source-css-property))
+			   ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+	   (setq web-mode-enable-auto-closing t))
+   #+end_src
+** magit
+   #+begin_src emacs-lisp
+     (use-package magit
+       :ensure t)
+   #+end_src
+** iedit
+   #+begin_src emacs-lisp
+     (use-package iedit
+       :ensure t)
+   #+end_src
+** move-text
+   #+begin_src emacs-lisp
+	 (use-package move-text
+	   :ensure t
+	   :bind (("M-p" . 'move-text-up)
+			  ("M-n" . 'move-text-down)))
+   #+end_src
+** expand-region
+   #+begin_src emacs-lisp
+	 (use-package expand-region
+	   :ensure t
+	   :bind ("C-=" . 'er/expand-region))
+   #+end_src
+** multiple-cursors
+   #+begin_src emacs-lisp
+	 (use-package multiple-cursors
+	   :ensure t
+	   :bind
+	   (("C-c m t" . mc/mark-all-like-this)
+		("C-c m m" . mc/mark-all-like-this-dwim)
+		("C-c m l" . mc/edit-lines)
+		("C-c m e" . mc/edit-ends-of-lines)
+		("C-c m a" . mc/edit-beginnings-of-lines)
+		("C-c m n" . mc/mark-next-like-this)
+		("C-c m p" . mc/mark-previous-like-this)))
+   #+end_src
+** show-paren-mode
+   #+begin_src emacs-lisp
+	 (show-paren-mode 1)
+	 (setq show-paren-delay 0)
+   #+end_src
+** smartparens
+   #+begin_src emacs-lisp
+	 (use-package smartparens
+	   :ensure t
+	   :config (require 'smartparens-config)
+	   :init (smartparens-global-mode t))
+   #+end_src
+* Org-mode
+** org-tempo
+   #+begin_src emacs-lisp
+     (require 'org-tempo)
+   #+end_src
+** org-bullets
+   #+begin_src emacs-lisp
+	 (use-package org-bullets
+	   :ensure t
+	   :custom
+	   (org-bullets-bullet-list '("◉" "○" "●" "◆"))
+	   :config
+	   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+   #+end_src
+* Dired
+** dired-subtree
+   #+begin_src emacs-lisp
+	 (use-package dired-subtree
+	   :ensure t
+	   :config
+	   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+	   (setq dired-subtree-use-backgrounds nil))
+   #+end_src
+** dired-narrow
+   #+begin_src emacs-lisp
+	 (use-package dired-narrow
+	   :ensure t
+	   :bind ("C-c n" . dired-narrow-fuzzy))
+   #+end_src
+* Custom after-save-hook
+  #+begin_src emacs-lisp
+	(defvar *filename-cmd*
+	  '(("/home/graphity/.Xresources" . "xrdb ~/.Xresources")
+		("/home/graphity/todo.org" . "kill -43 $(pidof dwmblocks)")))
+
+	(defun my-cmd-after-saved-file ()
+	  (let* ((match (assoc (buffer-file-name) *filename-cmd*)))
+		(when match
+		  (shell-command (cdr match)))))
+
+	(add-hook 'after-save-hook 'my-cmd-after-saved-file)
+  #+end_src
