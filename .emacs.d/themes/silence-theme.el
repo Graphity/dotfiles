@@ -47,7 +47,7 @@
 
    ;; built-in UI
    `(region ((,class (:background ,bg4 :distant-foreground ,bg1 :extend nil))))
-   `(highlight ((,class (:foreground ,bg1 :background ,fg1))))
+   `(highlight ((,class (:background ,bg4))))
    `(hl-line ((,class (:background ,bg2))))
    `(fringe ((,class (:background ,bg1 :foreground ,fg4))))
    `(cursor ((,class (:background ,blue))))
