@@ -298,8 +298,12 @@
    #+begin_src emacs-lisp
 	 (use-package smartparens
 	   :ensure t
-	   :config (require 'smartparens-config)
-	   :init (smartparens-global-mode t))
+	   :config
+	   (require 'smartparens-config)
+	   (setq sp-highlight-pair-overlay nil)
+	   :init
+	   (show-smartparens-global-mode t)
+	   (smartparens-global-mode t))
    #+end_src
 * Org-mode
 ** org-tempo
