@@ -1,0 +1,83 @@
+# Basic vars
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set icons
+set period 1
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/scope'
+
+# cmds/functions
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        text/*|application/json|inode/x-empty) $EDITOR $fx;;
+	image/svg+xml) display -- $f ;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+			[ -z "$file" ] && continue
+			lf -remote "send select \"$file\""
+			lf -remote "send toggle"
+		done &
+		;;
+	audio/*) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+	application/pgp-encrypted) $EDITOR $fx ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+cmd zip ${{
+    set -f
+    zip -r $f.zip $(basename $f)
+}}
+
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+cmd chwall ${{
+	feh --bg-scale "$f"
+}}
+
+# Bindings
+map gh cd ~
+map gd cd ~/Downloads
+map gp cd ~/pics
+map gv cd ~/vids
+map gb cd ~/books
+map gP cd ~/projects
+map gc cd ~/.config
+map gs cd ~/.local/bin
+
+map Z zip
+map E extract
+map W chwall
+map t invert
+map D delete
+map R reload
+map H set hidden!
+map Y $printf "%s" "$fx" | xclip -selection clipboard
+map <enter> shell
+
+map <c-n> down
+map <c-p> up
+map <c-b> updir
+map <c-f> open
+map <a-v> page-up
+map <c-v> page-down
+map <a-w> copy
+map <c-w> cut
+map <c-y> paste
+map <c-s> find
+map <c-r> find-back
