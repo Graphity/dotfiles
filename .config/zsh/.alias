@@ -1,13 +1,14 @@
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias scrot="scrot '%H%M%S_scrot.png' -e 'mv \$f ~/pics/screens/'"
-alias icat="kitty +kitten icat"
-
-alias zshrc="emacs -nw ${ZDOTDIR}/.zshrc"
 alias als="emacs -nw ${ZDOTDIR}/.alias"
 
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
+alias bat="bat --theme=base16"
+
 alias ls="exa --icons --group-directories-first"
 alias ll="exa -l --icons --group-directories-first"
 alias lla="exa -la --icons --group-directories-first"
+
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias scrot="scrot '%H%M%S_scrot.png' -e 'mv \$f ~/pics/screens/'"
+alias lf="lfub"
 
