@@ -343,7 +343,7 @@
 * Custom after-save-hook
   #+begin_src emacs-lisp
 	(defvar *filename-cmd*
-	  '(("/home/graphity/.Xresources" . "xrdb ~/.Xresources")
+	  '(("/home/graphity/.config/x11/xresources" . "xrdb ~/.config/x11/xresources")
 		("/home/graphity/todo.org" . "kill -43 $(pidof dwmblocks)")))
 
 	(defun my-cmd-after-saved-file ()
