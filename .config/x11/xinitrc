@@ -1,0 +1,12 @@
+~/.fehbg &
+picom --no-fading-openclose &
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!
+setxkbmap -model pc104 -layout us,ge -variant , -option grp:caps_toggle &
+dunst &
+flameshot &
+
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+exec startdwm &
+exec dwmblocks
