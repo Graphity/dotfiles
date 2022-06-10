@@ -1,6 +1,7 @@
 export PATH="$PATH:$HOME/.local/bin/"
 
 export LANG="en_US.UTF-8"
+export TODO="$HOME/.local/share/todo.org"
 export WALLS="$HOME/pics/walls"
 
 # ~/ Clean-up:
