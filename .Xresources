@@ -1,9 +1,0 @@
-#include ".Xresources.d/current"
-st.font:	Hack:pixelsize=15:antialias=true:autohint=true;
-st.bold_font:	0
-st.termname:	st-256color
-st.shell:	/bin/zsh
-st.bellvolume:	100
-st.tabspaces:	8
-st.chscale:	1.0
-st.cwscale:	1.0
