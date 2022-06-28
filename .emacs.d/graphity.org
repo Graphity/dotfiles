@@ -346,6 +346,14 @@
 	   :config
 	   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
    #+end_src
+** org-todo-keywords
+   #+begin_src emacs-lisp
+	 (setq org-todo-keywords
+		   '((sequence "TODO(t)" "PROJ(p)" "|" "DONE(d)")))
+
+	 (setq org-todo-keyword-faces
+		   '(("PROJ" . '(bold org-todo))))
+   #+end_src
 * Dired
 ** dired-subtree
    #+begin_src emacs-lisp
