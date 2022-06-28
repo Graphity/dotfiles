@@ -12,7 +12,28 @@
 ** theme and font
    #+begin_src emacs-lisp
 	 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-	 (load-theme 'silence t)
+	 ;; (load-theme 'silence t)
+
+	 (use-package doom-themes
+	   :ensure t
+	   :config
+	   ;; Global settings (defaults)
+	   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+			 doom-themes-enable-italic t) ; if nil, italics is universally disabled
+	   (load-theme 'doom-city-lights t)
+
+	   ;; Corrects (and improves) org-mode's native fontification.
+	   (doom-themes-org-config))
+
+	 ;; Must be used *after* the theme is loaded
+	 (custom-set-faces
+	   `(default ((t (:background "#000000"))))
+	   `(mode-line-inactive ((t (:background "#080808"))))
+	   `(org-block ((t (:background "#000000"))))
+	   `(org-block-begin-line ((t (:background "#000000"))))
+	   `(org-block-end-line ((t (:background "#000000"))))
+	   `(org-src-block-faces ((t (:background "#000000")))))
+
 	 (set-frame-font "Hack Nerd Font-12")
 
 	 (defun on-frame-open (frame)
