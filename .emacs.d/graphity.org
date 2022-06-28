@@ -365,7 +365,7 @@
   #+begin_src emacs-lisp
 	(defvar *filename-cmd*
 	  '(("/home/graphity/.config/x11/xresources" . "xrdb ~/.config/x11/xresources")
-		("/home/graphity/todo.org" . "kill -43 $(pidof dwmblocks)")))
+		("/home/graphity/.local/share/todo.org" . "kill -43 $(pidof dwmblocks)")))
 
 	(defun my-cmd-after-saved-file ()
 	  (let* ((match (assoc (buffer-file-name) *filename-cmd*)))
