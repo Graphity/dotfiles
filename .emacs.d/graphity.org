@@ -181,8 +181,10 @@
    #+end_src
 ** olivetti
    #+begin_src emacs-lisp
-	 (use-package olivetti-mode
-	   :ensure t)
+	 (use-package olivetti
+	   :ensure t
+	   :init
+	   (setq olivetti-body-width 80))
    #+end_src
 ** elcord
    #+begin_src emacs-lisp
