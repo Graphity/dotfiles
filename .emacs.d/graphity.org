@@ -179,6 +179,11 @@
 	   :config
 	   (pdf-tools-install))
    #+end_src
+** olivetti
+   #+begin_src emacs-lisp
+	 (use-package olivetti-mode
+	   :ensure t)
+   #+end_src
 ** elcord
    #+begin_src emacs-lisp
 	 (use-package elcord
