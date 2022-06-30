@@ -1,0 +1,41 @@
+* {
+    background:       #000000;
+	background-light: #080808;
+	foreground:       #2193ca;
+
+    background-color: @background;
+    text-color:       @foreground;
+}
+
+window {
+    width: 800px;
+}
+
+listview {
+    columns: 4;
+    lines:   1;
+	spacing: 15px;
+}
+
+mainbox {
+    children: [ listview ];
+    margin:   30px;
+}
+
+element {
+    background-color: @background-light;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+	font:             "Hack Nerd Font 40";
+    horizontal-align: 0.45;
+    vertical-align:   0.5;
+    margin:           40px 0px 40px 0px;
+}
+
+element selected {
+    background-color: @foreground;
+    text-color:       @background;
+}

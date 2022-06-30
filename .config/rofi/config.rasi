@@ -1,0 +1,11 @@
+configuration {
+  drun-display-format: "{name}";
+  font: "Hack Nerd Font Regular 12";
+  modi: "window,run,drun,calc,emoji";
+}
+
+@theme "themes/silence.rasi"
+
+window {
+    width: 30%;
+}
