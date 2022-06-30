@@ -1,10 +1,17 @@
 #!/bin/bash
 
-ACT=$(echo -e "shutdown\nreboot\nsuspend\nquit" | dmenu -p "Choose action:")
+shutdown=""
+reboot=""
+suspend="⏾"
+quit=""
 
-case $ACT in
-    "shutdown") shutdown now ;;
-    "reboot") reboot ;;
-    "suspend") systemctl suspend ;;
-    "quit") pkill dwm ;;
+options="$shutdown\n$reboot\n$suspend\n$quit"
+
+chosen="$(echo -e "$options" | rofi -dmenu -theme powermenu)"
+
+case $chosen in
+    $shutdown) systemctl poweroff ;;
+    $reboot) systemctl reboot ;;
+    $suspend) systemctl suspend ;;
+    $quit) pkill dwm ;;
 esac
