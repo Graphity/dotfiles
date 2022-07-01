@@ -8,5 +8,6 @@ flameshot &
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
+emacs --daemon &
 exec startdwm &
 exec dwmblocks
