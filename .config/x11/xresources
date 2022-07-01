@@ -17,3 +17,5 @@
 *.color13:		#5d50a8
 *.color14:		#2193ca
 *.color15:		#bdc4cc
+
+Emacs.font: Hack Nerd Font-12
