@@ -1,6 +1,6 @@
 * {
     background:       #000000;
-    background-light: #080808;
+    background-light: #0a0a0f;
     foreground:       #2193ca;
 
     background-color: @background;
@@ -24,6 +24,7 @@ mainbox {
 
 element {
     background-color: @background-light;
+    border-radius: 10px;
 }
 
 element-text {
