@@ -1,6 +1,8 @@
 export PATH="$PATH:$HOME/.local/bin/"
 
 export LANG="en_US.UTF-8"
+export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 export TODO="$HOME/.local/share/todo.org"
 export WALLS="$HOME/pics/walls"
 
