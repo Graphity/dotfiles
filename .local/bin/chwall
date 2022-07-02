@@ -2,5 +2,5 @@
 
 [[ $1 == "-s" ]] && xsetroot -solid black && exit
 
-WALL=$(ls $WALLS | dmenu)
+WALL=$(ls $WALLS | rofi -dmenu)
 [[ $WALL == "" ]] || feh --bg-scale "$WALLS/$WALL"
