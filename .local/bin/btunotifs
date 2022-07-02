@@ -14,17 +14,18 @@ with open('/home/graphity/.local/bin/.cfg/btu.json', 'r') as f:
 def check_inbox():
     r = requests.post(url, data={'username': data['user'], 'password': data['pass']})
     soup = BeautifulSoup(r.content, 'html.parser')
-    msgs = soup.find('a', {'title': 'შეტყობინებები'}).text.strip()
-    return f'{msgs} unread messages'
+    inbox = soup.find_all("span", class_="badge")[-1]
+    alert = soup.find('span', {'class': 'alert-message'})
+    if inbox:
+        return 0, inbox.text.strip()
+    return 1, alert.text.strip()
 
 
 if __name__ == '__main__':
-    try:
-        info = check_inbox()
-        indicator = info.split()[0]
-    except:
-        info = 'Error occurred'
-        indicator = 'X'
-    finally:
-        notify.send_notif('BTU', 'BTU Classroom', info)
-        print(indicator)
+    status, inbox = check_inbox()
+    if status == 0:
+        print(inbox)
+        inbox += ' unread messages'
+    else:
+        print('X')
+    notify.send_notif('BTU', 'BTU Classroom', inbox)
