@@ -9,5 +9,6 @@ flameshot &
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
 emacs --daemon &
+mpd &
 exec startdwm &
 exec dwmblocks
