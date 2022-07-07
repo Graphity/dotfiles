@@ -1,9 +1,7 @@
 #!/bin/bash
 
-SCHEMES="$HOME/.Xresources.d/schemes"
-SCHEME=$(ls $SCHEMES | dmenu -hp "graphite")
+SCHEME=$(ls $SCHEMES | dmenu -c -l 8 -fn "Hack Nerd Font:size=14" -bw 2 -h 30)
 
 if [ -n "$SCHEME" ]; then
-    ln -sf "$SCHEMES/$SCHEME" ~/.Xresources.d/current
-    xrdb ~/.Xresources
+    xrdb "$SCHEMES/$SCHEME" && kill -USR1 $(pidof st)
 fi
