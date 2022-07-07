@@ -2,5 +2,5 @@
 
 [[ $1 == "-s" ]] && xsetroot -solid black && exit
 
-WALL=$(ls $WALLS | rofi -dmenu)
+WALL=$(ls $WALLS | dmenu -c -l 8 -fn "Hack Nerd Font:size=14" -bw 2 -h 30)
 [[ $WALL == "" ]] || feh --bg-scale "$WALLS/$WALL"
