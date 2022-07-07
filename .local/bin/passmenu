@@ -1,6 +1,6 @@
 #!/bin/bash
 
-password=$(find ~/.local/share/password-store/ -type f -name '*.gpg' |
-	   	   sed 's/.*\/\(.*\)\.gpg$/\1/' |
-	   	   dmenu -fn "Hack Nerd Font:size=14" -c -l 5 -h 28 -bw 2)
-[ -n "$password" ] && pass show -c "$password" > notify-send
+id=$(find ~/.local/share/password-store/ -type f -name '*.gpg' |
+		 sed 's/.*\/\(.*\)\.gpg$/\1/' |
+		 dmenu -fn "Hack Nerd Font:size=14" -c -l 5 -h 28 -bw 2)
+[ -n "$id" ] && pass show -c "$id" && notify-send "Passmenu" "Copied password of $id to clipboard. Will clear in 45 seconds."
