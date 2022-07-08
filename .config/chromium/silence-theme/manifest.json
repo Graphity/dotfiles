@@ -1,0 +1,33 @@
+{
+    "version": "1",
+    "manifest_version": 2,
+    "name": "silence theme",
+    "theme": {
+	"colors": {
+	    "frame": [10, 10, 15],
+	    "frame_inactive": [10, 10, 15],
+	    "frame_incognito": [10, 10, 15],
+	    "frame_incognito_inactive": [10, 10, 15],
+	    "ntp_background": [10, 10, 15],
+	    "ntp_text": [84, 111, 130],
+	    "background_tab": [0, 0, 0],
+	    "background_tab_inactive": [0, 0, 0],
+	    "background_tab_incognito": [0, 0, 0],
+	    "background_tab_incognito_inactive": [0, 0, 0],
+	    "bookmark_text": [33, 147, 202],
+	    "button_background": [10, 10, 15],
+	    "tab_background_text": [84, 111, 130],
+	    "tab_background_text_inactive": [84, 111, 130],
+	    "tab_background_text_incognito": [33, 147, 202],
+	    "tab_background_text_incognito_inactive": [84, 111, 130],
+	    "tab_text": [33, 147, 202],
+	    "toolbar": [0, 0, 0],
+	    "toolbar_button_icon": [33, 147, 202],
+	    "omnibox_text": [33, 147, 202],
+	    "omnibox_background": [10, 10, 15]
+	},
+	"properties" : {
+	    "ntp_background_alignment" : "bottom"
+	}
+    }
+}
