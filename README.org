@@ -1,5 +1,6 @@
-[["pics/screens/090007_scrot.png"]]
+[[https://github.com/Graphity/dotfiles/blob/master/pics/screens/090007_scrot.png]]
 
+* Details
 |----------+-------|
 | WM       | [[https://github.com/Graphity/dwm][dwm]]   |
 |----------+-------|
