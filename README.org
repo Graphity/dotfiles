@@ -1,0 +1,11 @@
+[["pics/screens/090007_scrot.png"]]
+
+|----------+-------|
+| WM       | [[https://github.com/Graphity/dwm][dwm]]   |
+|----------+-------|
+| Terminal | [[https://github.com/Graphity/st][st]]    |
+|----------+-------|
+| Shell    | [[https://github.com/Graphity/dotfiles/tree/master/.config/zsh][zsh]]   |
+|----------+-------|
+| Editor   | [[https://github.com/Graphity/dotfiles/tree/master/.emacs.d][emacs]] |
+|----------+-------|
