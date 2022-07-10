@@ -5,7 +5,6 @@ export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
 export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 export TODO="$HOME/.local/share/todo.org"
 export WALLS="$HOME/pics/walls"
-export SCHEMES="$HOME/.config/x11/xresources.d/color-schemes"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
