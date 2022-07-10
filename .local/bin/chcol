@@ -1,7 +1,9 @@
 #!/bin/bash
 
-SCHEME=$(ls $SCHEMES | dmenu -c -l 8 -fn "Hack Nerd Font:size=14" -bw 2 -h 30)
+[[ $1 == "-r" ]] && kotl --reverse && kill -USR1 $(pidof st) && exit
+
+SCHEME=$(kotl -l | dmenu -c -l 8 -fn "Hack Nerd Font:size=14" -bw 2 -h 30)
 
 if [ -n "$SCHEME" ]; then
-    xrdb "$SCHEMES/$SCHEME" && kill -USR1 $(pidof st)
+    kotl $SCHEME && kill -USR1 $(pidof st)
 fi
