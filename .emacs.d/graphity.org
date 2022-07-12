@@ -224,6 +224,12 @@
 		:ensure t
 		:mode "\\.json\\'")
 	#+end_src
+*** GraphQL
+    #+begin_src emacs-lisp
+	  (use-package graphql-mode
+		:ensure t
+		:mode "\\.graphql\\'")
+    #+end_src
 *** YAML
     #+begin_src emacs-lisp
 	  (use-package yaml-mode
