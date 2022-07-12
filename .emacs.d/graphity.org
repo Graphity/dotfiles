@@ -214,6 +214,10 @@
 		:ensure t
 		:mode "\\.ts\\'")
     #+end_src
+*** JavaScript
+    #+begin_src emacs-lisp
+	  (setq js-indent-level 2)
+    #+end_src
 *** JSON
 	#+begin_src emacs-lisp
 	  (use-package json-mode
