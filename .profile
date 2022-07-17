@@ -1,4 +1,4 @@
-export PATH="$PATH:$HOME/.local/bin/:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.local/bin/:/usr/local/go/bin:$HOME/.local/share/go/bin/"
 
 export LANG="en_US.UTF-8"
 export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
