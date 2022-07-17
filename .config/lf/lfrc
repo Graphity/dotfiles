@@ -5,7 +5,8 @@ set scrolloff 10
 set icons
 set period 1
 set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/scope'
+# set previewer '~/.config/lf/scope'
+set previewer '~/.local/share/go/bin/pistol'
 
 # cmds/functions
 cmd open ${{
@@ -47,7 +48,8 @@ cmd extract ${{
 }}
 
 cmd chwall ${{
-	feh --bg-scale "$f"
+	wal -i "$f" && kill -USR1 $(pidof st)
+	# feh --bg-scale "$f"
 }}
 
 # Bindings
