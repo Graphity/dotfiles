@@ -5,8 +5,7 @@ set scrolloff 10
 set icons
 set period 1
 set cleaner '~/.config/lf/cleaner'
-# set previewer '~/.config/lf/scope'
-set previewer '~/.local/share/go/bin/pistol'
+set previewer '~/.config/lf/scope'
 
 # cmds/functions
 cmd open ${{
