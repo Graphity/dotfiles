@@ -1,31 +1,21 @@
 #!/usr/bin/env python3
 
 import json
-import requests
-import notify
-from bs4 import BeautifulSoup
-
-url = 'https://classroom.btu.edu.ge/ge/login/trylogin'
-
-with open('/home/graphity/.local/bin/.cfg/btu.json', 'r') as f:
-    data = json.load(f)
+from btu.classroom import Classroom
+from pynotifier import Notification
 
 
-def check_inbox():
-    r = requests.post(url, data={'username': data['user'], 'password': data['pass']})
-    soup = BeautifulSoup(r.content, 'html.parser')
-    inbox = soup.find_all("span", class_="badge")[-1]
-    alert = soup.find('span', {'class': 'alert-message'})
-    if inbox:
-        return 0, inbox.text.strip()
-    return 1, alert.text.strip()
+def main():
+    with open('/home/graphity/.local/bin/.cfg/btu.json') as f:
+        data = json.load(f)
+
+    classroom = Classroom(data['user'], data['pass'])
+    print(classroom.inbox)
+    Notification(
+        title='BTU Classroom',
+        description=f'{classroom.inbox} unread messages'
+    ).send()
 
 
 if __name__ == '__main__':
-    status, inbox = check_inbox()
-    if status == 0:
-        print(inbox)
-        inbox += ' unread messages'
-    else:
-        print('X')
-    notify.send_notif('BTU', 'BTU Classroom', inbox)
+    main()
