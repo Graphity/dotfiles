@@ -1,0 +1,13 @@
+#!/bin/bash
+
+colors="RED\nGREEN\nBLUE"
+
+chosen="$(echo -e $colors | dmenu -c -l 3 -fn "Hack Nerd Font:size=14" -bw 2 -h 30)"
+
+case $chosen in
+	"RED") wal -i $WALLS/red-space.png ;;
+	"GREEN") wal -i $WALLS/green-space.png ;;
+	"BLUE") wal -i $WALLS/blue-space.png ;;
+esac
+
+kill -USR1 $(pidof st)
