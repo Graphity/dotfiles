@@ -22,5 +22,5 @@ for battery in /sys/class/power_supply/BAT?*; do
 		*) ;;
 	esac
 
-	printf "%s%s %d%%" "$capacity_icon" "$status" "$capacity"; unset warn
+	printf "%s%s  %d%%" "$status" "$capacity_icon" "$capacity"; unset warn
 done && printf "\\n"
