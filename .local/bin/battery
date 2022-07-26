@@ -1,0 +1,26 @@
+#!/bin/sh
+
+for battery in /sys/class/power_supply/BAT?*; do
+	[ -n "${capacity+x}" ] && printf " "
+	capacity="$(cat "$battery/capacity" 2>&1)"
+
+	if [ "$capacity" = 100 ] && [ "$capacity" -gt 75 ]; then
+		capacity_icon=""
+	elif [ "$capacity" -le 75 ] && [ "$capacity" -gt 50 ]; then
+		capacity_icon=""
+	elif [ "$capacity" -le 50 ] && [ "$capacity" -gt 25 ]; then
+		capacity_icon=""
+	elif [ "$capacity" -le 25 ] && [ "$capacity" -gt 5 ]; then
+		capacity_icon=""
+	else
+		capacity_icon=""
+	fi
+
+	case "$(cat "$battery/status" 2>&1)" in
+		"Charging") status="⚡" ;;
+		"Not charging") status="" ;;
+		*) ;;
+	esac
+
+	printf "%s%s %d%%" "$capacity_icon" "$status" "$capacity"; unset warn
+done && printf "\\n"
