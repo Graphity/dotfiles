@@ -22,5 +22,5 @@ for battery in /sys/class/power_supply/BAT?*; do
 		*) ;;
 	esac
 
-	printf "%s%s  %d%%" "$status" "$capacity_icon" "$capacity";
+	printf "%s%s %d%%" "$status" "$capacity_icon" "$capacity";
 done && printf "\\n"
