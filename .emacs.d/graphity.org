@@ -236,6 +236,10 @@
 		:ensure t
 		:mode "\\.yml\\'")
     #+end_src
+*** Bash
+    #+begin_src emacs-lisp
+	  (setq sh-basic-offset 4)
+    #+end_src
 ** LSP
    #+begin_src emacs-lisp
 	 (use-package lsp-mode
