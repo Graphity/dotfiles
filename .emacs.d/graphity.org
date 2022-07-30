@@ -186,7 +186,7 @@
 	   :init
 	   (setq olivetti-body-width 80))
    #+end_src
-** elcord
+** COMMENT elcord
    #+begin_src emacs-lisp
 	 (use-package elcord
 	   :ensure t
