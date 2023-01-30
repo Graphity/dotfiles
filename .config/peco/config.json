@@ -1,0 +1,8 @@
+{
+    "StickySelection": true,
+    "Keymap": {
+        "C-s": "peco.ToggleSelectionAndSelectNext",
+        "C-r": "peco.ToggleRangeMode",
+        "C-i": "peco.InvertSelection"
+    }
+}
