@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import json
+import subprocess
 from btu.classroom import Classroom
-from pynotification import pynotifier
 
 
 def main():
@@ -11,10 +11,7 @@ def main():
 
     classroom = Classroom(data['user'], data['pass'])
     print(classroom.inbox)
-    pynotifier(
-        title='BTU Classroom',
-        message=f'{classroom.inbox} unread messages'
-    )
+    subprocess.run(['notify-send', 'BTU Classrom', f'{classroom.inbox} unread messages'])
 
 
 if __name__ == '__main__':
