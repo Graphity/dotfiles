@@ -2,7 +2,7 @@
 
 import json
 from btu.classroom import Classroom
-from pynotifier import Notification
+from pynotification import pynotifier
 
 
 def main():
@@ -11,10 +11,10 @@ def main():
 
     classroom = Classroom(data['user'], data['pass'])
     print(classroom.inbox)
-    Notification(
+    pynotifier(
         title='BTU Classroom',
-        description=f'{classroom.inbox} unread messages'
-    ).send()
+        message=f'{classroom.inbox} unread messages'
+    )
 
 
 if __name__ == '__main__':
