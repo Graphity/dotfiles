@@ -1,0 +1,60 @@
+[window]
+padding = { x = 8, y = 8 }
+dynamic_padding = true
+decorations = "None"
+opacity = 0.9
+blur = true
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "HackNerdFont"
+style = "Regular"
+
+[font.bold]
+family = "HackNerdFont"
+style = "Bold"
+
+[font.italic]
+family = "HackNerdFont"
+style = "Italic"
+
+[font.bold_italic]
+family = "HackNerdFont"
+style = "Bold Italic"
+
+[colors.primary]
+foreground = "#e5e5e5"
+background = "#000000"
+
+[colors.normal]
+black = "#000000"
+red = "#f87171"
+green = "#4ade80"
+yellow = "#facc15"
+blue = "#60a5fa"
+magenta = "#818cf8"
+cyan = "#22d3ee"
+white = "#e5e5e5"
+
+[colors.bright]
+black = "#525252"
+red = "#ef4444"
+green = "#22c55e"
+yellow = "#eab308"
+blue = "#3b82f6"
+magenta = "#6366f1"
+cyan = "#06b6d4"
+white = "#d4d4d4"
+
+[keyboard]
+bindings = [
+  { key = "P", mods = "Alt", action = "ScrollLineUp" },
+  { key = "N", mods = "Alt", action = "ScrollLineDown" },
+  { key = "V", mods = "Alt", action = "ScrollPageUp" },
+  { key = "V", mods = "Control", action = "ScrollPageDown" },
+  { key = "<", mods = "Alt | Shift", action = "ScrollToTop" },
+  { key = ">", mods = "Alt | Shift", action = "ScrollToBottom" },
+  { key = "Return", mods = "Control | Shift", action = "SpawnNewInstance" },
+]
