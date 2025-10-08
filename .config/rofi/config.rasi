@@ -1,11 +1,12 @@
 configuration {
   drun-display-format: "{name}";
   font: "Hack Nerd Font Regular 12";
-  modi: "window,run,drun,calc,emoji";
+  icon-theme: "Papirus";
+  modi: "window,run,drun,ssh";
 }
 
 @theme "themes/silence.rasi"
 
 window {
-    width: 30%;
+  width: 40%;
 }
