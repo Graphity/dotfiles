@@ -2,7 +2,7 @@
 
 shutdown=""
 reboot=""
-suspend="⏾"
+suspend="󰤄"
 quit="󰍃"
 
 options="$shutdown\n$reboot\n$suspend\n$quit"
